@@ -6,26 +6,23 @@
   background-size: contain;
 }
 
-.ladybug--up,
-.ladybug--left,
-.ladybug--right,
-.ladybug--down {
+.ladybug--position {
   transition: transform 300ms;
 }
 
-.ladybug--up {
+.ladybug-position {
   transform: rotate(0deg);  
 }
 
-.ladybug--left {
+.ladybug--position {
   transform: rotate(-90deg);
 }
 
-.ladybug--right {
+.ladybug--position {
   transform: rotate(90deg);
 }
 
-.ladybug--down {
+.ladybug--position {
   transform: rotate(180deg);
 }
 
