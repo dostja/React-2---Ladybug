@@ -6,45 +6,50 @@ import "./style.css";
 const STEP_SIZE = 25;
 
 const App = () => {
-
-
-  const ladybugState = (code) => {
-    const [position, setPosition] = useState({
+  
+    const [ladybugState, setLadybugState] = useState({
       posX: 100,
       posY: 100,
       orientation: "right",
     });
 
-    const movebug = () => {
+    console.log(ladybugState);
+
+    const movebug = ({ code }) => {
+      console.log(code);
       if (code === "ArrowUp") {
-        setPosition({ ...position, posX: position.posX - STEP_SIZE });
-      } else {
-        setPosition({ ...position, posX: position.posX + STEP_SIZE });
-      }
-      if (code === "ArrowDown") {
-        setPosition({ ...position, posX: position.posX + STEP_SIZE });
-      } else {
-        setPosition({ ...position, posX: position.posX - STEP_SIZE });
-      }
-      if (code === "ArrowLeft") {
-        setPosition({ ...position, posY: position.posY + STEP_SIZE });
-      } else {
-        setPosition({ ...position, posY: position.posY - STEP_SIZE });
-      }
-      if (code === "ArrowRight") {
-        setPosition({ ...position, posY: position.posY - STEP_SIZE });
-      } else {
-        setPosition({ ...position, posY: position.posY + STEP_SIZE });
+        setLadybugState((position) => ({
+          ...position,
+          orientation: "up",
+          posY: position.posY - STEP_SIZE,
+        }));
+      } else if (code === "ArrowLeft") {
+        setLadybugState((position) => ({
+          ...position,
+          orientation: "left",
+          posX: position.posX - STEP_SIZE,
+        }));
+      } else if (code === "ArrowRight") {
+        setLadybugState((position) => ({
+          ...position,
+          orientation: "right",
+          posX: position.posX + STEP_SIZE,
+        }));
+      } else if (code === "ArrowDown") {
+        setLadybugState((position) => ({
+          ...position,
+          orientation: "down",
+          posY: position.posY + STEP_SIZE,
+        }));
       }
     };
-    <movebug/>
 
     return (
-      <div tabIndex={-1} className="field" onKeyDown={ladybugState}>
+      <div tabIndex={-1} className="field" onKeyDown={movebug}>
         <header>Click anywhere to start the game</header>
-        <Ladybug orientation={position} />
+        <Ladybug ladybugState={ladybugState} />
       </div>
     );
-  };
+  
 };
 createRoot(document.querySelector("#app")).render(<App />);

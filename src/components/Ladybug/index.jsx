@@ -1,13 +1,13 @@
 import React from 'react';
 import './style.css';
 
-const Ladybug = ({position}) => {
+const Ladybug = ({ ladybugState: { posX, posY, orientation }}) => {
   return (
     <div 
-      className={`ladybug ladybug--${position}`} 
+      className={`ladybug ladybug--${orientation}`} 
       style={{
-        top: `${position}px`,
-        left: `${position}px`,
+        top: `${posY}px`,
+        left: `${posX}px`,
       }}
     />
   );
